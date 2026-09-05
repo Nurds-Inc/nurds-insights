@@ -1,0 +1,116 @@
+@import url("https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500;600&display=swap");
+
+:root {
+  --blue: #2563eb;
+  --blue-dark: #1d4ed8;
+  --navy: #0b1727;
+  --navy-2: #0f1e30;
+  --navy-border: #1e3247;
+  --ink: #0f172a;
+  --muted: #64748b;
+  --line: #e2e8f0;
+  --surface: #ffffff;
+  --canvas: #f8fafc;
+  --green: #047857;
+  --sidebar: 248px;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; min-height: 100%; background: var(--canvas); color: var(--ink); }
+body { font-family: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; -webkit-font-smoothing: antialiased; }
+button, input { font: inherit; }
+
+.insights-shell { min-height: 100dvh; display: grid; grid-template-columns: var(--sidebar) minmax(0, 1fr); background: var(--canvas); }
+.app-sidebar { position: fixed; inset: 0 auto 0 0; z-index: 20; width: var(--sidebar); display: flex; flex-direction: column; padding: 16px 12px 12px; color: #cbd8e6; background: var(--navy); border-right: 1px solid var(--navy-border); }
+.workspace-switcher { min-height: 44px; display: grid; grid-template-columns: 34px minmax(0,1fr) 16px; align-items: center; gap: 10px; padding: 5px 8px; border: 1px solid transparent; border-radius: 12px; }
+.workspace-switcher:hover { border-color: var(--navy-border); background: rgba(255,255,255,.05); }
+.workspace-switcher img { width: 34px; height: 34px; border-radius: 9px; object-fit: cover; }
+.workspace-switcher span, .sidebar-footer div { min-width: 0; display: grid; gap: 2px; }
+.workspace-switcher strong { overflow: hidden; color: #fff; font-size: 14px; text-overflow: ellipsis; }
+.workspace-switcher small, .sidebar-footer small { overflow: hidden; color: #7f93a8; font-size: 11px; text-overflow: ellipsis; }
+.workspace-switcher > svg { color: #7f93a8; }
+.app-sidebar nav { flex: 1; display: grid; align-content: start; gap: 3px; margin-top: 18px; }
+.app-sidebar nav p { margin: 15px 10px 6px; color: #617890; font: 600 9px/1 "Geist Mono", monospace; letter-spacing: .11em; text-transform: uppercase; }
+.app-sidebar a { min-height: 39px; display: flex; align-items: center; gap: 11px; padding: 0 11px; border-radius: 8px; color: #9fb0c1; font-size: 13px; font-weight: 500; text-decoration: none; transition: color .16s ease, background .16s ease; }
+.app-sidebar a:hover { color: #eef6ff; background: rgba(255,255,255,.055); }
+.app-sidebar a.active { color: #fff; background: #172b42; box-shadow: inset 3px 0 0 #60a5fa; }
+.sidebar-footer { display: grid; grid-template-columns: 36px minmax(0,1fr); align-items: center; gap: 9px; padding-top: 10px; border-top: 1px solid var(--navy-border); }
+.sidebar-footer > a { grid-column: 1 / -1; }
+.sidebar-footer .avatar { width: 34px; height: 34px; display: grid; place-items: center; border-radius: 50%; color: #dbeafe; background: #1e3a5f; font-size: 11px; font-weight: 700; }
+.sidebar-footer strong { overflow: hidden; color: #fff; font-size: 12px; text-overflow: ellipsis; }
+
+.workspace { grid-column: 2; min-width: 0; }
+.topbar { position: sticky; top: 0; z-index: 10; min-height: 72px; display: grid; grid-template-columns: minmax(180px,1fr) minmax(280px,520px) minmax(90px,1fr); align-items: center; gap: 24px; padding: 10px 28px; border-bottom: 1px solid var(--line); background: rgba(255,255,255,.94); backdrop-filter: blur(14px); }
+.topbar p { margin: 0 0 2px; color: var(--muted); font: 600 9px/1 "Geist Mono", monospace; letter-spacing: .08em; text-transform: uppercase; }
+.topbar h1 { margin: 0; font-size: 20px; letter-spacing: -.025em; }
+.global-search { min-height: 38px; display: grid; grid-template-columns: 18px minmax(0,1fr) auto; align-items: center; gap: 8px; padding: 0 9px 0 12px; border: 1px solid #d8e0ea; border-radius: 9px; color: #94a3b8; background: #f8fafc; }
+.global-search:focus-within { border-color: #93b4f5; box-shadow: 0 0 0 3px rgba(37,99,235,.08); }
+.global-search input { min-width: 0; border: 0; outline: 0; color: var(--ink); background: transparent; font-size: 12px; }
+.global-search kbd { padding: 3px 6px; border: 1px solid #d8e0ea; border-radius: 5px; color: #64748b; background: #fff; font: 500 9px/1 "Geist Mono", monospace; }
+.preview-pill { justify-self: end; padding: 5px 9px; border: 1px solid #bfdbfe; border-radius: 999px; color: #1d4ed8; background: #eff6ff; font: 600 9px/1 "Geist Mono", monospace; letter-spacing: .04em; text-transform: uppercase; }
+
+.content { display: grid; gap: 18px; max-width: 1480px; margin: 0 auto; padding: 26px 28px 40px; }
+.hero { position: relative; min-height: 190px; display: flex; align-items: flex-end; justify-content: space-between; gap: 30px; overflow: hidden; padding: 30px 32px; border: 1px solid #d7e0eb; border-radius: 14px; background: linear-gradient(118deg,#fff 0%,#f8fbff 55%,#edf5ff 100%); box-shadow: 0 1px 2px rgba(15,23,42,.04); }
+.hero::after { position: absolute; width: 360px; height: 360px; right: -115px; top: -190px; border: 1px solid rgba(37,99,235,.14); border-radius: 50%; box-shadow: 0 0 0 42px rgba(37,99,235,.03), 0 0 0 84px rgba(37,99,235,.025); content: ""; }
+.hero > div, .hero button { position: relative; z-index: 1; }
+.eyebrow { display: inline-flex; align-items: center; gap: 6px; margin-bottom: 13px; color: var(--blue); font: 600 9px/1 "Geist Mono", monospace; letter-spacing: .08em; text-transform: uppercase; }
+.hero h2 { max-width: 720px; margin: 0; font-size: clamp(28px,3vw,42px); line-height: 1.05; letter-spacing: -.045em; }
+.hero p { max-width: 680px; margin: 13px 0 0; color: #526174; font-size: 13px; line-height: 1.6; }
+.hero button { flex: 0 0 auto; min-height: 42px; display: inline-flex; align-items: center; gap: 8px; padding: 0 15px; border: 0; border-radius: 8px; color: #fff; background: var(--blue); box-shadow: 0 4px 12px rgba(37,99,235,.22); cursor: pointer; }
+.hero button:hover { background: var(--blue-dark); transform: translateY(-1px); }
+
+.metric-grid { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 12px; }
+.metric-card { min-width: 0; padding: 16px 17px; border: 1px solid var(--line); border-radius: 11px; background: #fff; box-shadow: 0 1px 2px rgba(15,23,42,.035); }
+.metric-card header { display: flex; align-items: center; justify-content: space-between; }
+.metric-card header span { width: 32px; height: 32px; display: grid; place-items: center; border-radius: 8px; color: #2563eb; background: #eff6ff; }
+.metric-card header small { color: #94a3b8; font: 500 8px/1 "Geist Mono", monospace; }
+.metric-card p { margin: 14px 0 5px; color: var(--muted); font-size: 11px; }
+.metric-card div { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+.metric-card strong { font-size: 24px; letter-spacing: -.035em; }
+.metric-card em { color: var(--green); font-size: 10px; font-style: normal; font-weight: 650; }
+
+.analysis-grid { display: grid; grid-template-columns: minmax(0,1.55fr) minmax(300px,.75fr); gap: 12px; }
+.panel { min-width: 0; overflow: hidden; border: 1px solid var(--line); border-radius: 11px; background: #fff; box-shadow: 0 1px 2px rgba(15,23,42,.035); }
+.panel > header { min-height: 65px; display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 13px 17px; border-bottom: 1px solid var(--line); }
+.panel header p { margin: 0 0 4px; color: #94a3b8; font: 600 8px/1 "Geist Mono", monospace; letter-spacing: .07em; text-transform: uppercase; }
+.panel header h3 { margin: 0; font-size: 14px; letter-spacing: -.015em; }
+.panel header button { display: inline-flex; align-items: center; gap: 7px; padding: 7px 9px; border: 1px solid var(--line); border-radius: 7px; color: #475569; background: #fff; font-size: 10px; }
+.chart-wrap { min-height: 245px; display: grid; grid-template-columns: 45px minmax(0,1fr); gap: 10px; padding: 24px 24px 9px 17px; }
+.chart-axis { display: flex; flex-direction: column; justify-content: space-between; padding-bottom: 18px; color: #94a3b8; font: 500 8px/1 "Geist Mono", monospace; }
+.bar-chart { display: flex; align-items: flex-end; gap: clamp(7px,1.4vw,15px); padding: 0 4px 18px; border-bottom: 1px solid #cbd5e1; background: repeating-linear-gradient(to bottom, transparent 0, transparent 73px, #eef2f7 74px); }
+.bar-chart span { flex: 1; max-width: 34px; min-height: 12px; border-radius: 4px 4px 1px 1px; background: linear-gradient(to top,#2563eb,#60a5fa); box-shadow: 0 4px 8px rgba(37,99,235,.12); animation: rise .65s both cubic-bezier(.2,.8,.2,1); }
+.bar-chart span:nth-child(2n) { animation-delay: .06s; }
+@keyframes rise { from { height: 0; opacity: .35; } }
+.performance-panel footer { display: flex; align-items: center; justify-content: space-between; padding: 10px 17px 14px; color: #64748b; font-size: 9px; }
+.performance-panel footer span { display: flex; align-items: center; gap: 6px; }
+.legend-dot { width: 7px; height: 7px; border-radius: 2px; background: #3b82f6; }
+.performance-panel footer small { color: #94a3b8; }
+.focus-panel > header > svg { color: #2563eb; }
+.focus-panel > button { width: 100%; min-height: 76px; display: grid; grid-template-columns: 28px minmax(0,1fr); gap: 10px; padding: 13px 17px; border: 0; border-bottom: 1px solid #edf1f5; color: var(--ink); text-align: left; background: #fff; cursor: pointer; }
+.focus-panel > button:hover { background: #f8fbff; }
+.focus-panel > button > span { width: 26px; height: 26px; display: grid; place-items: center; border: 1px solid #dbe6f5; border-radius: 7px; color: #2563eb; background: #f4f8ff; font: 600 8px/1 "Geist Mono", monospace; }
+.focus-panel button div { min-width: 0; display: grid; gap: 5px; }
+.focus-panel button strong { font-size: 11px; line-height: 1.25; }
+.focus-panel button small { color: #64748b; font-size: 9px; line-height: 1.45; }
+.preview-notice { min-height: 48px; display: flex; align-items: center; gap: 10px; padding: 10px 14px; border: 1px solid #bfdbfe; border-radius: 9px; color: #1e3a5f; background: #eff6ff; }
+.preview-notice svg { flex: 0 0 auto; color: #2563eb; }
+.preview-notice p { margin: 0; font-size: 10px; line-height: 1.45; }
+
+/* Keep the standard CopilotKit component, then align its surface with CRM. */
+[data-copilotkit-sidebar] { font-family: "Geist", sans-serif !important; }
+
+@media (max-width: 1080px) {
+  .metric-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .analysis-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 760px) {
+  :root { --sidebar: 0px; }
+  .app-sidebar { display: none; }
+  .workspace { grid-column: 1; }
+  .topbar { grid-template-columns: 1fr auto; padding: 10px 16px; }
+  .global-search { display: none; }
+  .content { padding: 16px; }
+  .hero { align-items: flex-start; flex-direction: column; padding: 24px; }
+  .metric-grid { grid-template-columns: 1fr; }
+  .performance-panel footer { align-items: flex-start; flex-direction: column; gap: 6px; }
+}

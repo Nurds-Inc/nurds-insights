@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nurds-insights
+  namespace: nurds-insights
+  labels:
+    app.kubernetes.io/name: nurds-insights
+spec:
+  selector:
+    app.kubernetes.io/name: nurds-insights
+  ports:
+    - name: http
+      port: 80
+      targetPort: http

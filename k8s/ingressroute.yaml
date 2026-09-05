@@ -1,0 +1,31 @@
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: nurds-insights-headers
+  namespace: nurds-insights
+spec:
+  headers:
+    contentTypeNosniff: true
+    frameDeny: true
+    referrerPolicy: strict-origin-when-cross-origin
+    customResponseHeaders:
+      X-Robots-Tag: noindex, nofollow
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: nurds-insights
+  namespace: nurds-insights
+  labels:
+    app.kubernetes.io/name: nurds-insights
+spec:
+  entryPoints: [web]
+  routes:
+    - kind: Rule
+      match: "Host(`insights.nurds.dev`)"
+      priority: 200
+      middlewares:
+        - name: nurds-insights-headers
+      services:
+        - name: nurds-insights
+          port: 80
