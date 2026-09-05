@@ -24,6 +24,8 @@ spec:
         app.kubernetes.io/part-of: nurds-insights
     spec:
       automountServiceAccountToken: false
+      imagePullSecrets:
+        - name: ghcr-pull
       securityContext:
         runAsNonRoot: true
         seccompProfile:
