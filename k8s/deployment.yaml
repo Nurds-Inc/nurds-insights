@@ -30,7 +30,7 @@ spec:
           type: RuntimeDefault
       containers:
         - name: web
-          image: ghcr.io/nurds-inc/nurds-insights:latest
+          image: ghcr.io/nurds-inc/nurds-insights@sha256:1d96ce0cc8ee3f3d2f5b64de471181c6dcfc0595de2ddd279c4d7eb5f94af301
           imagePullPolicy: IfNotPresent
           ports:
             - name: http
